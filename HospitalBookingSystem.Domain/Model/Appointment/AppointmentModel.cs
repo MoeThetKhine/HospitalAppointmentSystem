@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace HospitalBookingSystem.Domain.Model.Appointment
 {
-    internal class AppointmentModel
+    public class AppointmentModel
     {
+        public string AppointmentId { get; set; } = null!;
+
+        public DateOnly Date { get; set; }
+
+        public TimeOnly Time { get; set; }
+
+        public string DoctorId { get; set; } = null!;
+
+        public string PatientId { get; set; } = null!;
+
+        public string Status { get; set; } = null!;
+
+        public string Reason { get; set; } = null!;
+
+        public string? RoomNumber { get; set; }
+
+        public DateOnly BookingDate { get; set; }
+
+        public string Remarks { get; set; } = null!;
+
     }
 }

@@ -31,6 +31,8 @@ public partial class AppDbContext : DbContext
 
     #endregion
 
+    #region OnModelCreating
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         #region Appointment
@@ -100,6 +102,8 @@ public partial class AppDbContext : DbContext
 
         #endregion
 
+        #region Patient
+
         modelBuilder.Entity<Patient>(entity =>
         {
             entity.HasKey(e => e.PatientId).HasName("PK__Patient__970EC34650800F63");
@@ -121,8 +125,12 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
         });
 
+        #endregion
+
         OnModelCreatingPartial(modelBuilder);
     }
+
+    #endregion
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Domain.Model.Doctor;
 
+#region DoctorModel
+
 public class DoctorModel
 {
     public string DoctorId { get; set; } = null!;
@@ -19,5 +21,6 @@ public class DoctorModel
     public string LicenseNumber { get; set; } = null!;
 
     public bool IsAvailable { get; set; }
-
 }
+
+#endregion

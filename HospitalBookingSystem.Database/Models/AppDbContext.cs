@@ -33,6 +33,8 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        #region Appointment
+
         modelBuilder.Entity<Appointment>(entity =>
         {
             entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2D21206D7");
@@ -70,6 +72,10 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Appointme__Patie__3F466844");
         });
 
+        #endregion
+
+        #region Doctor
+
         modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK__Doctor__2DC00EDF29E9635B");
@@ -91,6 +97,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.PhoneNumber).HasMaxLength(50);
             entity.Property(e => e.Specialization).HasMaxLength(100);
         });
+
+        #endregion
 
         modelBuilder.Entity<Patient>(entity =>
         {

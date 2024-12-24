@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Domain.Model.Appointment;
 
+#region AppointmentModel
+
 public class AppointmentModel
 {
     public string AppointmentId { get; set; } = null!;
@@ -21,5 +23,6 @@ public class AppointmentModel
     public DateOnly BookingDate { get; set; }
 
     public string Remarks { get; set; } = null!;
-
 }
+
+#endregion

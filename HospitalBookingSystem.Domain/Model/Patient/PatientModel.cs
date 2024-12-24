@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Domain.Model.Patient;
 
+#region PatientModel
+
 public class PatientModel
 {
     public string PatientId { get; set; } = null!;
@@ -22,3 +24,5 @@ public class PatientModel
 
     public string InsuranceDetails { get; set; } = null!;
 }
+
+#endregion

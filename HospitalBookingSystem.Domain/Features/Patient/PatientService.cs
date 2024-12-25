@@ -57,7 +57,9 @@ public class PatientService
 
         try
         {
-            if(requestModel is null)
+            #region Validation
+
+            if (requestModel is null)
             {
                 response = Result<PatientRequestModel>.ValidationError("Please field all field");
             }
@@ -98,6 +100,8 @@ public class PatientService
                 response = Result<PatientRequestModel>.ValidationError("Insurane Details is required.");
             }
 
+            #endregion
+
             var patient = new TblPatient
             {
                 Name = requestModel.Name,
@@ -124,4 +128,5 @@ public class PatientService
     }
 
     #endregion
+
 }

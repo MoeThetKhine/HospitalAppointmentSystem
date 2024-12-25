@@ -34,6 +34,8 @@ namespace HospitalBookingSystem.RestApi.Controllers
 
         #endregion
 
+        #region CreatePatientAsync
+
         [HttpPost]
         public async Task<IActionResult> CreatePatientAsync(PatientRequestModel requestModel)
         {
@@ -47,5 +49,7 @@ namespace HospitalBookingSystem.RestApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        #endregion
     }
 }

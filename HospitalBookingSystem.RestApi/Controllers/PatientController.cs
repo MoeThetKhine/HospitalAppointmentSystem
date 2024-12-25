@@ -37,7 +37,7 @@ namespace HospitalBookingSystem.RestApi.Controllers
         #region CreatePatientAsync
 
         [HttpPost]
-        public async Task<IActionResult> CreatePatientAsync(PatientRequestModel requestModel)
+        public async Task<IActionResult> CreatePatientAsync([FromForm]PatientRequestModel requestModel)
         {
             try
             {

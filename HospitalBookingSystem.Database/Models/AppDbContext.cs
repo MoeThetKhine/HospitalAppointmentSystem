@@ -73,6 +73,8 @@ public partial class AppDbContext : DbContext
 
         #endregion
 
+        #region TblDoctor
+
         modelBuilder.Entity<TblDoctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK__Doctor__2DC00EDF29E9635B");
@@ -94,6 +96,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.PhoneNumber).HasMaxLength(50);
             entity.Property(e => e.Specialization).HasMaxLength(100);
         });
+
+        #endregion
 
         modelBuilder.Entity<TblPatient>(entity =>
         {

@@ -114,7 +114,7 @@ public class PatientService
 
             var patient = new TblPatient
             {
-                PatientId = patientId, // Explicitly set PatientId
+                PatientId = patientId, 
                 Name = requestModel.Name,
                 DateOfBirth = requestModel.DateOfBirth,
                 Gender = requestModel.Gender,
@@ -138,7 +138,6 @@ public class PatientService
 
         return response;
     }
-
 
     #endregion
 

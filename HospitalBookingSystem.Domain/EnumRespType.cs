@@ -1,10 +1,9 @@
-﻿namespace HospitalBookingSystem.Domain
+﻿namespace HospitalBookingSystem.Domain;
+
+public enum EnumRespType
 {
-    public enum EnumRespType
-    {
-        None,
-        Success,
-        ValidationError,
-        SystemError
-    }
+    None,
+    Success,
+    ValidationError,
+    SystemError
 }

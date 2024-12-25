@@ -1,4 +1,5 @@
 ﻿using HospitalBookingSystem.Domain.Features.Patient;
+using HospitalBookingSystem.Domain.Model.Patient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,20 @@ namespace HospitalBookingSystem.RestApi.Controllers
                 return Ok(lst);
             }
             catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePatientAsync(PatientRequestModel requestModel)
+        {
+            try
+            {
+                var item = await _service.CreatePatientAsync(requestModel);
+                return Ok(item);
+            }
+            catch(Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

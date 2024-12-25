@@ -26,7 +26,6 @@ public class PatientService
 
             var lst = await patient.Select(x => new PatientModel()
             {
-                PatientId = x.PatientId,
                 Name = x.Name,
                 DateOfBirth = x.DateOfBirth,
                 Gender = x.Gender,
@@ -51,59 +50,71 @@ public class PatientService
 
     #region CreatePatientAsync
 
-    public async Task<Result<PatientRequestModel>> CreatePatientAsync(PatientRequestModel requestModel)
+    public async Task<Result<PatientModel>> CreatePatientAsync(PatientModel requestModel)
     {
-        Result<PatientRequestModel> response;
+        Result<PatientModel> response;
 
         try
         {
             #region Validation
 
-            if (requestModel is null)
+            if (requestModel == null)
             {
-                response = Result<PatientRequestModel>.ValidationError("Please field all field");
+                return Result<PatientModel>.ValidationError("Please fill all fields.");
             }
-            if (requestModel.Name.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.Name))
             {
-                response = Result<PatientRequestModel>.ValidationError("Patient Name is required.");
+                return Result<PatientModel>.ValidationError("Patient Name is required.");
             }
-            if(requestModel.DateOfBirth == null)
+
+            if (requestModel.DateOfBirth == null)
             {
-                response = Result<PatientRequestModel>.ValidationError("Date Of Birth is required.");
+                return Result<PatientModel>.ValidationError("Date Of Birth is required.");
             }
-            if (requestModel.Gender.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.Gender))
             {
-                response = Result<PatientRequestModel>.ValidationError("Gender is required.");
+                return Result<PatientModel>.ValidationError("Gender is required.");
             }
-            if (requestModel.PhoneNumber.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.PhoneNumber))
             {
-                response = Result<PatientRequestModel>.ValidationError("Phone Number is required.");
+                return Result<PatientModel>.ValidationError("Phone Number is required.");
             }
-            if (requestModel.Email.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.Email))
             {
-                response = Result<PatientRequestModel>.ValidationError("Email is required");
+                return Result<PatientModel>.ValidationError("Email is required.");
             }
-            if (requestModel.Address.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.Address))
             {
-                response = Result<PatientRequestModel>.ValidationError("Address is required");
+                return Result<PatientModel>.ValidationError("Address is required.");
             }
-            if (requestModel.MedicalHistory.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.MedicalHistory))
             {
-                response = Result<PatientRequestModel>.ValidationError("Medial History is required.");
+                return Result<PatientModel>.ValidationError("Medical History is required.");
             }
-            if (requestModel.EmergencyContact.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.EmergencyContact))
             {
-                response = Result<PatientRequestModel>.ValidationError("Emergeny Contat is required.");
+                return Result<PatientModel>.ValidationError("Emergency Contact is required.");
             }
-            if (requestModel.InsuranceDetails.IsNullOrEmpty())
+
+            if (string.IsNullOrWhiteSpace(requestModel.InsuranceDetails))
             {
-                response = Result<PatientRequestModel>.ValidationError("Insurane Details is required.");
+                return Result<PatientModel>.ValidationError("Insurance Details are required.");
             }
 
             #endregion
 
+            var patientId = Guid.NewGuid();
+
             var patient = new TblPatient
             {
+                PatientId = patientId, // Explicitly set PatientId
                 Name = requestModel.Name,
                 DateOfBirth = requestModel.DateOfBirth,
                 Gender = requestModel.Gender,
@@ -115,17 +126,19 @@ public class PatientService
                 InsuranceDetails = requestModel.InsuranceDetails,
             };
 
-            _appDbContext.TblPatients.AddAsync(patient);
+            _appDbContext.TblPatients.Add(patient);
             await _appDbContext.SaveChangesAsync();
 
-            response = Result<PatientRequestModel>.Success(requestModel);
+            response = Result<PatientModel>.Success(requestModel);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            response = Result<PatientRequestModel>.SystemError(ex.Message);
+            response = Result<PatientModel>.SystemError(ex.Message);
         }
+
         return response;
     }
+
 
     #endregion
 

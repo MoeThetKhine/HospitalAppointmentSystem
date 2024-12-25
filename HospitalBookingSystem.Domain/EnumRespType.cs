@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Domain;
 
+#region EnumRespType
+
 public enum EnumRespType
 {
     None,
@@ -7,3 +9,5 @@ public enum EnumRespType
     ValidationError,
     SystemError
 }
+
+#endregion

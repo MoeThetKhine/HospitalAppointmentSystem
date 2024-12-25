@@ -1,9 +1,4 @@
-﻿using HospitalBookingSystem.Domain.Features.Patient;
-using HospitalBookingSystem.Domain.Model.Patient;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace HospitalBookingSystem.RestApi.Controllers
+﻿namespace HospitalBookingSystem.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,8 +1,9 @@
-﻿namespace HospitalBookingSystem.Database.Models;
+﻿using System;
+using System.Collections.Generic;
 
-#region Doctor
+namespace HospitalBookingSystem.Database.Models;
 
-public partial class Doctor
+public partial class TblDoctor
 {
     public string DoctorId { get; set; } = null!;
 
@@ -22,7 +23,5 @@ public partial class Doctor
 
     public bool IsAvailable { get; set; }
 
-    public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+    public virtual ICollection<TblAppointment> TblAppointments { get; set; } = new List<TblAppointment>();
 }
-
-#endregion

@@ -1,4 +1,8 @@
-﻿namespace HospitalBookingSystem.Database.Models;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace HospitalBookingSystem.Database.Models;
 
 public partial class AppDbContext : DbContext
 {
@@ -11,35 +15,23 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    #region DbSet
+    public virtual DbSet<TblAppointment> TblAppointments { get; set; }
 
-    public virtual DbSet<Appointment> Appointments { get; set; }
+    public virtual DbSet<TblDoctor> TblDoctors { get; set; }
 
-    public virtual DbSet<Doctor> Doctors { get; set; }
-
-    public virtual DbSet<Patient> Patients { get; set; }
-
-    #endregion
-
-    #region Connetion String
+    public virtual DbSet<TblPatient> TblPatients { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.;Database=HospitalAppointmentSystem;User Id=sa;Password=sasa@123;TrustServerCertificate=True;");
 
-    #endregion
-
-    #region OnModelCreating
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        #region Appointment
-
-        modelBuilder.Entity<Appointment>(entity =>
+        modelBuilder.Entity<TblAppointment>(entity =>
         {
             entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2D21206D7");
 
-            entity.ToTable("Appointment");
+            entity.ToTable("Tbl_Appointment");
 
             entity.Property(e => e.AppointmentId)
                 .HasMaxLength(40)
@@ -61,26 +53,22 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.RoomNumber).HasMaxLength(10);
             entity.Property(e => e.Status).HasMaxLength(50);
 
-            entity.HasOne(d => d.Doctor).WithMany(p => p.Appointments)
+            entity.HasOne(d => d.Doctor).WithMany(p => p.TblAppointments)
                 .HasForeignKey(d => d.DoctorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Docto__3E52440B");
 
-            entity.HasOne(d => d.Patient).WithMany(p => p.Appointments)
+            entity.HasOne(d => d.Patient).WithMany(p => p.TblAppointments)
                 .HasForeignKey(d => d.PatientId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Patie__3F466844");
         });
 
-        #endregion
-
-        #region Doctor
-
-        modelBuilder.Entity<Doctor>(entity =>
+        modelBuilder.Entity<TblDoctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK__Doctor__2DC00EDF29E9635B");
 
-            entity.ToTable("Doctor");
+            entity.ToTable("Tbl_Doctor");
 
             entity.HasIndex(e => e.LicenseNumber, "UQ__Doctor__E8890166B5D13199").IsUnique();
 
@@ -98,15 +86,11 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Specialization).HasMaxLength(100);
         });
 
-        #endregion
-
-        #region Patient
-
-        modelBuilder.Entity<Patient>(entity =>
+        modelBuilder.Entity<TblPatient>(entity =>
         {
             entity.HasKey(e => e.PatientId).HasName("PK__Patient__970EC34650800F63");
 
-            entity.ToTable("Patient");
+            entity.ToTable("Tbl_Patient");
 
             entity.Property(e => e.PatientId)
                 .HasMaxLength(40)
@@ -123,12 +107,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
         });
 
-        #endregion
-
         OnModelCreatingPartial(modelBuilder);
     }
-
-    #endregion
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

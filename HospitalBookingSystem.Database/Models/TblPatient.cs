@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace HospitalBookingSystem.Database.Models;
+﻿namespace HospitalBookingSystem.Database.Models;
 
 #region TblPatient
 

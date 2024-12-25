@@ -31,6 +31,9 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        #region TblAppointment
+
         modelBuilder.Entity<TblAppointment>(entity =>
         {
             entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2D21206D7");
@@ -67,6 +70,8 @@ public partial class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Patie__3F466844");
         });
+
+        #endregion
 
         modelBuilder.Entity<TblDoctor>(entity =>
         {

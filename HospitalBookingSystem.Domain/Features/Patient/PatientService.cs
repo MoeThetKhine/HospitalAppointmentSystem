@@ -1,9 +1,4 @@
-﻿using HospitalBookingSystem.Database.Models;
-using HospitalBookingSystem.Domain.Model.Patient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-
-namespace HospitalBookingSystem.Domain.Features.Patient
+﻿namespace HospitalBookingSystem.Domain.Features.Patient
 {
     public class PatientService
     {

@@ -1,8 +1,20 @@
+using HospitalBookingSystem.Database.Models;
+using HospitalBookingSystem.Domain.Features.Patient;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+}, ServiceLifetime.Transient, ServiceLifetime.Transient);
+
+builder.Services.AddScoped<PatientService>();
+
 
 var app = builder.Build();
 

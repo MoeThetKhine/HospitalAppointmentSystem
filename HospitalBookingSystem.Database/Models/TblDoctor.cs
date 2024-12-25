@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace HospitalBookingSystem.Database.Models;
 
+#region TblDoctor
+
 public partial class TblDoctor
 {
     public string DoctorId { get; set; } = null!;
@@ -25,3 +27,5 @@ public partial class TblDoctor
 
     public virtual ICollection<TblAppointment> TblAppointments { get; set; } = new List<TblAppointment>();
 }
+
+#endregion

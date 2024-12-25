@@ -49,6 +49,8 @@ public class PatientService
 
     #endregion
 
+    #region CreatePatientAsync
+
     public async Task<Result<PatientRequestModel>> CreatePatientAsync(PatientRequestModel requestModel)
     {
         Result<PatientRequestModel> response;
@@ -120,4 +122,6 @@ public class PatientService
         }
         return response;
     }
+
+    #endregion
 }

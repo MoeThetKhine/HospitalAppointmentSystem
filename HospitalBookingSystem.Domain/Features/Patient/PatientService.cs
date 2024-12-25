@@ -9,6 +9,8 @@ public class PatientService
         _appDbContext = appDbContext;
     }
 
+    #region GetPatientAsyn
+
     public async Task<Result<List<PatientModel>>> GetPatientAsyn()
     {
         Result<List<PatientModel>> response;
@@ -44,6 +46,8 @@ public class PatientService
         }
         return response;
     }
+
+    #endregion
 
     public async Task<Result<PatientRequestModel>> CreatePatientAsync(PatientRequestModel requestModel)
     {

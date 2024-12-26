@@ -1,40 +1,27 @@
-﻿namespace HospitalBookingSystem.Database.Models;
+﻿using System;
+using System.Collections.Generic;
 
-#region TblPatient
+namespace HospitalBookingSystem.Database.Models;
 
 public partial class TblPatient
 {
-    [Key]
-    public Guid PatientId { get; set; } 
+    public string PatientId { get; set; } = null!;
 
-    [Required]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    [Required]
     public DateTime DateOfBirth { get; set; }
 
-    [Required]
-    public string Gender { get; set; }
+    public string Gender { get; set; } = null!;
 
-    [Required]
-    public string PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; } = null!;
 
-    [Required]
-    public string Email { get; set; }
+    public string Email { get; set; } = null!;
 
-    [Required]
-    public string Address { get; set; }
+    public string Address { get; set; } = null!;
 
-    [Required]
-    public string MedicalHistory { get; set; }
+    public string? MedicalHistory { get; set; }
 
-    [Required]
-    public string EmergencyContact { get; set; }
+    public string? EmergencyContact { get; set; }
 
-    [Required]
-    public string InsuranceDetails { get; set; }
-
-    public virtual ICollection<TblAppointment> TblAppointments { get; set; } = new List<TblAppointment>();
+    public string? InsuranceDetails { get; set; }
 }
-
-#endregion

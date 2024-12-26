@@ -1,6 +1,7 @@
-﻿namespace HospitalBookingSystem.Database.Models;
+﻿using System;
+using System.Collections.Generic;
 
-#region TblDoctor
+namespace HospitalBookingSystem.Database.Models;
 
 public partial class TblDoctor
 {
@@ -14,15 +15,7 @@ public partial class TblDoctor
 
     public string Email { get; set; } = null!;
 
-    public int Experience { get; set; }
-
-    public string Department { get; set; } = null!;
-
-    public string LicenseNumber { get; set; } = null!;
+    public string Address { get; set; } = null!;
 
     public bool IsAvailable { get; set; }
-
-    public virtual ICollection<TblAppointment> TblAppointments { get; set; } = new List<TblAppointment>();
 }
-
-#endregion

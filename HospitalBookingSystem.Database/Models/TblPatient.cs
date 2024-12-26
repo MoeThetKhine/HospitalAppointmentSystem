@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Database.Models;
 
+#region TblPatient
+
 public partial class TblPatient
 {
     public string PatientId { get; set; } = null!;
@@ -22,3 +24,5 @@ public partial class TblPatient
 
     public string? InsuranceDetails { get; set; }
 }
+
+#endregion

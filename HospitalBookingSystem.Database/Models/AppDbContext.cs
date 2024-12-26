@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-
-namespace HospitalBookingSystem.Database.Models;
+﻿namespace HospitalBookingSystem.Database.Models;
 
 public partial class AppDbContext : DbContext
 {

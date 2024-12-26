@@ -67,4 +67,18 @@ public class PatientController : ControllerBase
 
     #endregion
 
+    [HttpPatch]
+    public async Task<IActionResult> UpdatePatientAsync(string name, PatientResponseModel responseModel)
+    {
+        try
+        {
+            var item = await _service.UpatePatientAsync(name, responseModel);
+            return Ok(item);
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
 }

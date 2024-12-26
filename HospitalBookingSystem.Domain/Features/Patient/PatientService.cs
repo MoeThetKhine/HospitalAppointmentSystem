@@ -26,6 +26,7 @@ public class PatientService
 
             var lst = await patient.Select(x => new PatientModel()
             {
+                PatientId = x.PatientId,
                 Name = x.Name,
                 DateOfBirth = x.DateOfBirth,
                 Gender = x.Gender,
@@ -50,9 +51,9 @@ public class PatientService
 
     #region CreatePatientAsync
 
-    public async Task<Result<PatientRequestModel>> CreatePatientAsync(PatientRequestModel requestModel)
+    public async Task<Result<PatientModel>> CreatePatientAsync(PatientModel requestModel)
     {
-        Result<PatientRequestModel> response;
+        Result<PatientModel> response;
 
         try
         {
@@ -60,57 +61,57 @@ public class PatientService
 
             if (requestModel == null)
             {
-                return Result<PatientRequestModel>.ValidationError("Please fill all fields.");
+                return Result<PatientModel>.ValidationError("Please fill all fields.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.Name))
             {
-                return Result<PatientRequestModel>.ValidationError("Patient Name is required.");
+                return Result<PatientModel>.ValidationError("Patient Name is required.");
             }
 
             if (requestModel.DateOfBirth == null)
             {
-                return Result<PatientRequestModel>.ValidationError("Date Of Birth is required.");
+                return Result<PatientModel>.ValidationError("Date Of Birth is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.Gender))
             {
-                return Result<PatientRequestModel>.ValidationError("Gender is required.");
+                return Result<PatientModel>.ValidationError("Gender is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.PhoneNumber))
             {
-                return Result<PatientRequestModel>.ValidationError("Phone Number is required.");
+                return Result<PatientModel>.ValidationError("Phone Number is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.Email))
             {
-                return Result<PatientRequestModel>.ValidationError("Email is required.");
+                return Result<PatientModel>.ValidationError("Email is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.Address))
             {
-                return Result<PatientRequestModel>.ValidationError("Address is required.");
+                return Result<PatientModel>.ValidationError("Address is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.MedicalHistory))
             {
-                return Result<PatientRequestModel>.ValidationError("Medical History is required.");
+                return Result<PatientModel>.ValidationError("Medical History is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.EmergencyContact))
             {
-                return Result<PatientRequestModel>.ValidationError("Emergency Contact is required.");
+                return Result<PatientModel>.ValidationError("Emergency Contact is required.");
             }
 
             if (string.IsNullOrWhiteSpace(requestModel.InsuranceDetails))
             {
-                return Result<PatientRequestModel>.ValidationError("Insurance Details are required.");
+                return Result<PatientModel>.ValidationError("Insurance Details are required.");
             }
 
             #endregion
 
-            var patientId = Guid.NewGuid();
+            var patientId = Guid.NewGuid().ToString();
 
             var patient = new TblPatient
             {
@@ -129,11 +130,11 @@ public class PatientService
             _appDbContext.TblPatients.Add(patient);
             await _appDbContext.SaveChangesAsync();
 
-            response = Result<PatientRequestModel>.Success(requestModel);
+            response = Result<PatientModel>.Success(requestModel);
         }
         catch (Exception ex)
         {
-            response = Result<PatientRequestModel>.SystemError(ex.Message);
+            response = Result<PatientModel>.SystemError(ex.Message);
         }
 
         return response;

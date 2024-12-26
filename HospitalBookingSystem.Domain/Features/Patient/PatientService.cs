@@ -185,6 +185,8 @@ public class PatientService
 
     #endregion
 
+    #region UpatePatientAsync
+
     public async Task<Result<PatientResponseModel>>UpatePatientAsync(string name , PatientResponseModel responseModel)
     {
         Result<PatientResponseModel> result;
@@ -198,6 +200,9 @@ public class PatientService
             {
                 result = Result<PatientResponseModel>.ValidationError("Patient does not exist");
             }
+
+            #region Validation
+
             if (!string.IsNullOrEmpty(responseModel.PhoneNumber))
             {
                 patient.PhoneNumber = responseModel.PhoneNumber;
@@ -215,6 +220,8 @@ public class PatientService
                 patient.EmergencyContact = responseModel.EmergencyContact;
             }
 
+            #endregion
+
             _appDbContext.TblPatients.Attach(patient);
             _appDbContext.Entry(patient).State = EntityState.Modified;
 
@@ -228,5 +235,7 @@ public class PatientService
 
         return result;
     }
+
+    #endregion
 
 }

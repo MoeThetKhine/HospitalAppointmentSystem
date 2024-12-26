@@ -32,7 +32,7 @@ public class PatientController : ControllerBase
     #region CreatePatientAsync
 
     [HttpPost]
-    public async Task<IActionResult> CreatePatientAsync([FromForm]PatientRequestModel requestModel)
+    public async Task<IActionResult> CreatePatientAsync([FromForm] PatientModel requestModel)
     {
         try
         {

@@ -1,4 +1,6 @@
-﻿namespace HospitalBookingSystem.Domain.Features.Patient;
+﻿using Azure;
+
+namespace HospitalBookingSystem.Domain.Features.Patient;
 
 public class PatientService
 {
@@ -182,5 +184,49 @@ public class PatientService
     }
 
     #endregion
+
+    public async Task<Result<PatientResponseModel>>UpatePatientAsync(string name , PatientResponseModel responseModel)
+    {
+        Result<PatientResponseModel> result;
+        try
+        {
+            var patient = await _appDbContext.TblPatients
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Name == name);
+
+            if (patient is null)
+            {
+                result = Result<PatientResponseModel>.ValidationError("Patient does not exist");
+            }
+            if (!string.IsNullOrEmpty(responseModel.PhoneNumber))
+            {
+                patient.PhoneNumber = responseModel.PhoneNumber;
+            }
+            if (!string.IsNullOrEmpty(responseModel.Address))
+            {
+                patient.Address = responseModel.Address;
+            }
+            if (!string.IsNullOrEmpty(responseModel.MedicalHistory))
+            {
+                patient.MedicalHistory = responseModel.MedicalHistory;
+            }
+            if (!string.IsNullOrWhiteSpace(responseModel.EmergencyContact))
+            {
+                patient.EmergencyContact = responseModel.EmergencyContact;
+            }
+
+            _appDbContext.TblPatients.Attach(patient);
+            _appDbContext.Entry(patient).State = EntityState.Modified;
+
+            await _appDbContext.SaveChangesAsync();
+            result = Result<PatientResponseModel>.Success(responseModel);
+        }
+        catch (Exception ex)
+        {
+            result = Result<PatientResponseModel>.SystemError(ex.Message);
+        }
+
+        return result;
+    }
 
 }

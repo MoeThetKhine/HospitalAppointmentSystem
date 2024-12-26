@@ -67,6 +67,8 @@ public class PatientController : ControllerBase
 
     #endregion
 
+    #region UpdatePatientAsync
+
     [HttpPatch]
     public async Task<IActionResult> UpdatePatientAsync(string name, PatientResponseModel responseModel)
     {
@@ -81,4 +83,5 @@ public class PatientController : ControllerBase
         }
     }
 
+    #endregion
 }

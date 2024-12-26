@@ -11,9 +11,9 @@ public class PatientService
 
     #region GetPatientAsyn
 
-    public async Task<Result<List<PatientModel>>> GetPatientAsyn()
+    public async Task<Result<List<PatientRequestModel>>> GetPatientAsyn()
     {
-        Result<List<PatientModel>> response;
+        Result<List<PatientRequestModel>> response;
 
         try
         {
@@ -21,12 +21,11 @@ public class PatientService
 
             if (patient is null)
             {
-                return Result<List<PatientModel>>.ValidationError("No Patient Found");
+                return Result<List<PatientRequestModel>>.ValidationError("No Patient Found");
             }
 
-            var lst = await patient.Select(x => new PatientModel()
+            var lst = await patient.Select(x => new PatientRequestModel()
             {
-                PatientId = x.PatientId,
                 Name = x.Name,
                 DateOfBirth = x.DateOfBirth,
                 Gender = x.Gender,
@@ -38,16 +37,18 @@ public class PatientService
                 InsuranceDetails = x.InsuranceDetails
             }).ToListAsync();
 
-            response =  Result<List<PatientModel>>.Success(lst); 
+            response =  Result<List<PatientRequestModel>>.Success(lst); 
         }
         catch (Exception ex)
         {
-            response =  Result<List<PatientModel>>.SystemError(ex.Message);
+            response =  Result<List<PatientRequestModel>>.SystemError(ex.Message);
         }
         return response;
     }
 
     #endregion
+
+
 
     #region CreatePatientAsync
 

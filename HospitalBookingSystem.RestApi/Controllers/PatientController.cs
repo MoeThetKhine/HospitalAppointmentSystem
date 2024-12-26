@@ -27,7 +27,23 @@ public class PatientController : ControllerBase
         }
     }
 
+
+
     #endregion
+
+    [HttpGet("{name}")]
+    public async Task<IActionResult> GetPatientByNameAsyn(string name)
+    {
+        try
+        {
+            var item = await _service.GetPatientByNameAsyn(name);
+            return Ok(item);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
 
     #region CreatePatientAsync
 

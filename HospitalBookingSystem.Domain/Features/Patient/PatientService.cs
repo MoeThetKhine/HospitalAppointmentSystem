@@ -48,7 +48,43 @@ public class PatientService
 
     #endregion
 
+    public async Task<Result<List<PatientRequestModel>>> GetPatientByNameAsyn(string name)
+    {
+        Result<List<PatientRequestModel>> response;
 
+        try
+        {
+            var patient = _appDbContext.TblPatients
+                .Where(x => x.Name == name)
+                .AsNoTracking();
+                
+
+            if (patient is null)
+            {
+                return Result<List<PatientRequestModel>>.ValidationError("No Patient Found");
+            }
+
+            var item  = await patient.Select(x => new PatientRequestModel()
+            {
+                Name = x.Name,
+                DateOfBirth = x.DateOfBirth,
+                Gender = x.Gender,
+                PhoneNumber = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                MedicalHistory = x.MedicalHistory,
+                EmergencyContact = x.EmergencyContact,
+                InsuranceDetails = x.InsuranceDetails
+            }).ToListAsync();
+
+            response = Result<List<PatientRequestModel>>.Success(item);
+        }
+        catch (Exception ex)
+        {
+            response = Result<List<PatientRequestModel>>.SystemError(ex.Message);
+        }
+        return response;
+    }
 
     #region CreatePatientAsync
 

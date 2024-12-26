@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Database.Models;
 
+#region TblAppointment
+
 public partial class TblAppointment
 {
     public string AppointmentId { get; set; } = null!;
@@ -14,3 +16,5 @@ public partial class TblAppointment
 
     public string Status { get; set; } = null!;
 }
+
+#endregion

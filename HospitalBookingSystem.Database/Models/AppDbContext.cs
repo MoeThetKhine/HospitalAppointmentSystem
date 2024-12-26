@@ -37,6 +37,9 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        #region TblAppointment
+
         modelBuilder.Entity<TblAppointment>(entity =>
         {
             entity.HasKey(e => e.AppointmentId).HasName("PK__TblAppoi__8ECDFCC298AA696A");
@@ -52,6 +55,8 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(15)
                 .HasDefaultValue("Scheduled");
         });
+
+        #endregion
 
         modelBuilder.Entity<TblDoctor>(entity =>
         {

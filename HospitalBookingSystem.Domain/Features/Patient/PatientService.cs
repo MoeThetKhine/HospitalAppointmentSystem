@@ -1,6 +1,4 @@
-﻿using Azure;
-
-namespace HospitalBookingSystem.Domain.Features.Patient;
+﻿namespace HospitalBookingSystem.Domain.Features.Patient;
 
 public class PatientService
 {

@@ -48,6 +48,8 @@ public class PatientService
 
     #endregion
 
+    #region GetPatientByNameAsyn
+
     public async Task<Result<List<PatientRequestModel>>> GetPatientByNameAsyn(string name)
     {
         Result<List<PatientRequestModel>> response;
@@ -85,6 +87,8 @@ public class PatientService
         }
         return response;
     }
+
+    #endregion
 
     #region CreatePatientAsync
 

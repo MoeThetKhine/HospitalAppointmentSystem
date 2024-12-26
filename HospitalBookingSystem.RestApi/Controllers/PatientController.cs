@@ -31,6 +31,8 @@ public class PatientController : ControllerBase
 
     #endregion
 
+    #region GetPatientByNameAsyn
+
     [HttpGet("{name}")]
     public async Task<IActionResult> GetPatientByNameAsyn(string name)
     {
@@ -44,6 +46,8 @@ public class PatientController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
+
+    #endregion
 
     #region CreatePatientAsync
 

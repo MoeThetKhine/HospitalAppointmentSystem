@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Database.Models;
 
+#region TblDoctor
+
 public partial class TblDoctor
 {
     public string DoctorId { get; set; } = null!;
@@ -16,3 +18,5 @@ public partial class TblDoctor
 
     public bool IsAvailable { get; set; }
 }
+
+#endregion

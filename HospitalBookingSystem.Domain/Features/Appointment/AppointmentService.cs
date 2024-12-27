@@ -44,6 +44,8 @@ public class AppointmentService
 
     #endregion
 
+    #region GetAppointmentListByDateAsync
+
     public async Task<Result<List<AppointmentRequestModel>>> GetAppointmentListByDateAsync(DateTime date)
     {
         Result<List<AppointmentRequestModel>> result;
@@ -76,5 +78,7 @@ public class AppointmentService
         }
         return result;
     }
+
+    #endregion
 
 }

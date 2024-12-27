@@ -1,5 +1,4 @@
-﻿
-namespace HospitalBookingSystem.Domain.Features.Doctor
+﻿namespace HospitalBookingSystem.Domain.Features.Doctor
 {
     public class DoctorService
     {

@@ -1,5 +1,4 @@
 ﻿using HospitalBookingSystem.Domain.Model.Doctor;
-using System.Collections.Generic;
 
 namespace HospitalBookingSystem.Domain.Features.Doctor
 {

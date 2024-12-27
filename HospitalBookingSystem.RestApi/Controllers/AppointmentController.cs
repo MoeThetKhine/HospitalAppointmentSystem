@@ -14,6 +14,8 @@ namespace HospitalBookingSystem.RestApi.Controllers
             _appointmentService = appointmentService;
         }
 
+        #region GetAppointmentListAsync
+
         [HttpGet]
         public async Task<IActionResult> GetAppointmentListAsync()
         {
@@ -27,5 +29,7 @@ namespace HospitalBookingSystem.RestApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        #endregion
     }
 }

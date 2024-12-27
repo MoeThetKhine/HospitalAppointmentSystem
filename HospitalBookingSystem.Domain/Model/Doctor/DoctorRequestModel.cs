@@ -1,5 +1,7 @@
 ﻿namespace HospitalBookingSystem.Domain.Model.Doctor;
 
+#region DoctorRequestModel
+
 public class DoctorRequestModel
 {
     public string Name { get; set; } = null!;
@@ -12,3 +14,5 @@ public class DoctorRequestModel
 
     public string Address { get; set; } = null!;
 }
+
+#endregion

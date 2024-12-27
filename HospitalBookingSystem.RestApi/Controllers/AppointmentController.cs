@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace HospitalBookingSystem.RestApi.Controllers
+﻿namespace HospitalBookingSystem.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

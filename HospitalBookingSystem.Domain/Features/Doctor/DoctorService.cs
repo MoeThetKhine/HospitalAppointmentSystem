@@ -162,7 +162,9 @@ public class DoctorService
                 result = Result<DoctorResponseModel>.ValidationError("Doctor does not exist.");
             }
 
-            if(!string.IsNullOrEmpty(responseModel.Specialization))
+            #region Validation
+
+            if (!string.IsNullOrEmpty(responseModel.Specialization))
             {
                 doctor.Specialization = responseModel.Specialization;
             }
@@ -176,6 +178,8 @@ public class DoctorService
             {
                 doctor.Address = responseModel.Address;
             }
+
+            #endregion
 
             _appDbContext.TblDoctors.Attach(doctor);
             _appDbContext.Entry(doctor).State = EntityState.Modified;

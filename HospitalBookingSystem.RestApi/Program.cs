@@ -1,4 +1,6 @@
 using HospitalBookingSystem.Database.Models;
+using HospitalBookingSystem.Domain.Features.Appointment;
+using HospitalBookingSystem.Domain.Features.Doctor;
 using HospitalBookingSystem.Domain.Features.Patient;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 }, ServiceLifetime.Transient, ServiceLifetime.Transient);
 
 builder.Services.AddScoped<PatientService>();
+builder.Services.AddScoped<DoctorService>();
+builder.Services.AddScoped<AppointmentService>();
 
 
 var app = builder.Build();

@@ -100,7 +100,7 @@ public class PatientService
         {
             #region Validation
 
-            if (requestModel == null)
+            if (requestModel is null)
             {
                 return Result<PatientModel>.ValidationError("Please fill all fields.");
             }

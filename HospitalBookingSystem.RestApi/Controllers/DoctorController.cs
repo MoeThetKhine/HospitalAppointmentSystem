@@ -1,6 +1,4 @@
-﻿
-
-namespace HospitalBookingSystem.RestApi.Controllers
+﻿namespace HospitalBookingSystem.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

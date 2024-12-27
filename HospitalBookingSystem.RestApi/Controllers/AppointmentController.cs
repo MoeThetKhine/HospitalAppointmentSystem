@@ -49,10 +49,14 @@ public class AppointmentController : ControllerBase
 
     #endregion
 
+    #region CreateAppointmentAsync
+
     [HttpPost]
     public async Task<IActionResult> CreateAppointmentAsync([FromForm]AppointmentModel appointment)
     {
         var item = _appointmentService.CreateAppointmentAsync(appointment);
         return Ok(item);
     }
+
+    #endregion
 }

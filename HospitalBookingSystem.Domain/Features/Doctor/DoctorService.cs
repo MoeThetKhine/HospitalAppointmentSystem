@@ -145,6 +145,47 @@ public class DoctorService
 
     #endregion
 
-    public async Task<Result<>>
+    public async Task<Result<DoctorResponseModel>> UpdateDoctorAsync(string name, DoctorResponseModel responseModel)
+    {
+        Result<DoctorResponseModel> result;
+
+        try
+        {
+            var doctor = _appDbContext.TblDoctors
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Name == name);
+
+            if(doctor is null)
+            {
+                result = Result<DoctorResponseModel>.ValidationError("Doctor does not exist.");
+            }
+
+            if(!string.IsNullOrEmpty(responseModel.Specialization))
+            {
+                doctor.Specialization = responseModel.Specialization;
+            }
+
+            if (!string.IsNullOrEmpty(responseModel.PhoneNumber))
+            {
+                doctor.PhoneNumber = responseModel.PhoneNumber;
+            }
+
+            if (!string.IsNullOrEmpty(responseModel.Address))
+            {
+                doctor.Address = responseModel.Address;
+            }
+
+            _appDbContext.TblDoctors.Attach(doctor);
+            _appDbContext.Entry(doctor).State = EntityState.Modified;
+            await _appDbContext.SaveChangesAsync();
+
+            result = Result<DoctorResponseModel>.Success(responseModel);
+        }
+        catch (Exception ex)
+        {
+            result = Result<DoctorResponseModel>.SystemError(ex.Message);
+        }
+        return result;
+    }
 
 }

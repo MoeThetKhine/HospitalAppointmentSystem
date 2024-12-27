@@ -81,6 +81,8 @@ public class DoctorService
 
     #endregion
 
+    #region CreateDoctorAsync
+
     public async Task<Result<DoctorModel>> CreateDoctorAsync(DoctorModel doctorModel)
     {
         Result<DoctorModel> result;
@@ -136,4 +138,7 @@ public class DoctorService
         }
         return result;
     }
+
+    #endregion
+
 }

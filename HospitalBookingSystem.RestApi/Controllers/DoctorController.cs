@@ -10,12 +10,17 @@ public class DoctorController : ControllerBase
     {
         _service = service;
     }
+
+    #region GetDoctorAsync
+
     [HttpGet]
     public async Task<IActionResult> GetDoctorAsync()
     {
         var lst = await _service.GetDoctorAsync();
         return Ok(lst);
     }
+
+    #endregion
 
     [HttpGet("{name}")]
     public async Task<IActionResult> GetDoctorByNameAsync(string name)

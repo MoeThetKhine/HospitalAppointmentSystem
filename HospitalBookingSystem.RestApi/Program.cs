@@ -1,9 +1,3 @@
-using HospitalBookingSystem.Database.Models;
-using HospitalBookingSystem.Domain.Features.Appointment;
-using HospitalBookingSystem.Domain.Features.Doctor;
-using HospitalBookingSystem.Domain.Features.Patient;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

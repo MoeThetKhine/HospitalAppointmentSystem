@@ -22,6 +22,8 @@ public class DoctorController : ControllerBase
 
     #endregion
 
+
+
     [HttpGet("{name}")]
     public async Task<IActionResult> GetDoctorByNameAsync(string name)
     {

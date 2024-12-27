@@ -11,6 +11,8 @@ namespace HospitalBookingSystem.Domain.Features.Appointment
             _context = context;
         }
 
+        #region GetAppointmentListAsync
+
         public async Task<Result<List<AppointmentRequestModel>>> GetAppointmentListAsync()
         {
             Result<List<AppointmentRequestModel>> result;
@@ -41,5 +43,8 @@ namespace HospitalBookingSystem.Domain.Features.Appointment
             }
             return result;
         }
+
+        #endregion
+
     }
 }

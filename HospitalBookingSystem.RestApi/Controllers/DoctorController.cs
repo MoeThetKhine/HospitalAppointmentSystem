@@ -55,4 +55,11 @@ public class DoctorController : ControllerBase
 
     #endregion
 
+    [HttpPut]
+    public async Task<IActionResult> DisadvaliableDoctorAsync(string name)
+    {
+        var item = await _service.DisadvaliableDoctorAsync(name);
+        return Ok(item);
+    }
+
 }

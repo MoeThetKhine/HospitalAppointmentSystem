@@ -1,4 +1,6 @@
-﻿namespace HospitalBookingSystem.RestApi.Controllers;
+﻿using HospitalBookingSystem.Domain.Model.Appointment;
+
+namespace HospitalBookingSystem.RestApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -46,4 +48,11 @@ public class AppointmentController : ControllerBase
     }
 
     #endregion
+
+    [HttpPost]
+    public async Task<IActionResult> CreateAppointmentAsync([FromForm]AppointmentModel appointment)
+    {
+        var item = _appointmentService.CreateAppointmentAsync(appointment);
+        return Ok(item);
+    }
 }

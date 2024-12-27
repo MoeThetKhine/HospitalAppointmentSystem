@@ -4,7 +4,7 @@
 
 public class AppointmentModel
 {
-    public string AppointmentId { get; set; } = null!;
+    //public string AppointmentId { get; set; } = null!;
 
     public string PatientId { get; set; } = null!;
 

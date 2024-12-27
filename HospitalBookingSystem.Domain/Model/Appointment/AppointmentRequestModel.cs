@@ -4,24 +4,16 @@
 
 public class AppointmentRequestModel
 {
-    public DateOnly Date { get; set; }
-
-    public TimeOnly Time { get; set; }
-
-    public string DoctorId { get; set; } = null!;
 
     public string PatientId { get; set; } = null!;
 
+    public string DoctorId { get; set; } = null!;
+
+    public DateTime AppointmentDate { get; set; }
+
+    public string? Reason { get; set; }
+
     public string Status { get; set; } = null!;
-
-    public string Reason { get; set; } = null!;
-
-    public string? RoomNumber { get; set; }
-
-    public DateOnly BookingDate { get; set; }
-
-    public string Remarks { get; set; } = null!;
-
 }
 
 #endregion

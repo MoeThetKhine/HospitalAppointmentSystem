@@ -20,5 +20,12 @@ namespace HospitalBookingSystem.RestApi.Controllers
             var lst = await _service.GetDoctorAsync();
             return Ok(lst);
         }
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetDoctorByNameAsync(string name)
+        {
+            var item = await _service.GetDoctorByNameAsync(name);
+            return Ok(item);
+        }
     }
 }

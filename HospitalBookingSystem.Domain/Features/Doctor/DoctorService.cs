@@ -164,11 +164,6 @@ public class DoctorService
 
             #region Validation
 
-            if (!string.IsNullOrEmpty(responseModel.Specialization))
-            {
-                doctor.Specialization = responseModel.Specialization;
-            }
-
             if (!string.IsNullOrEmpty(responseModel.PhoneNumber))
             {
                 doctor.PhoneNumber = responseModel.PhoneNumber;

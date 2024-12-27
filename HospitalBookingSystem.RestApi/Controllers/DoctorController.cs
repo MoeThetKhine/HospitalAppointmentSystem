@@ -1,4 +1,5 @@
 ﻿using HospitalBookingSystem.Domain.Features.Doctor;
+using HospitalBookingSystem.Domain.Model.Doctor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,13 @@ namespace HospitalBookingSystem.RestApi.Controllers
         public async Task<IActionResult> GetDoctorByNameAsync(string name)
         {
             var item = await _service.GetDoctorByNameAsync(name);
+            return Ok(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDoctorAsync([FromForm]DoctorModel doctorModel)
+        {
+            var item = await _service.CreateDoctorAsync(doctorModel);
             return Ok(item);
         }
     }

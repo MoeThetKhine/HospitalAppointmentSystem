@@ -33,10 +33,15 @@ public class DoctorController : ControllerBase
 
     #endregion
 
+    #region CreateDoctorAsync
+
     [HttpPost]
     public async Task<IActionResult> CreateDoctorAsync([FromForm]DoctorModel doctorModel)
     {
         var item = await _service.CreateDoctorAsync(doctorModel);
         return Ok(item);
     }
+
+    #endregion
+
 }

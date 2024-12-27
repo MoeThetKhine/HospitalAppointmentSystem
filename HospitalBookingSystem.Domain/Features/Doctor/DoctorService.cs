@@ -44,6 +44,8 @@ public class DoctorService
 
     #endregion
 
+    #region GetDoctorByNameAsync
+
     public async Task<Result<List<DoctorRequestModel>>> GetDoctorByNameAsync(string name)
     {
         Result<List<DoctorRequestModel>> result;
@@ -76,4 +78,6 @@ public class DoctorService
         }
         return result;
     }
+
+    #endregion
 }

@@ -4,7 +4,6 @@
 
 public class DoctorResponseModel
 {
-    public string Specialization { get; set; } = null!;
 
     public string PhoneNumber { get; set; } = null!;
 

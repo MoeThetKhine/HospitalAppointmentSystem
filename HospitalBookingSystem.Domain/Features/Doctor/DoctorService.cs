@@ -9,6 +9,8 @@ public class DoctorService
         _appDbContext = appDbContext;
     }
 
+    #region GetDoctorAsync
+
     public async Task<Result<List<DoctorRequestModel>>> GetDoctorAsync()
     {
         Result<List<DoctorRequestModel>> result;
@@ -39,6 +41,8 @@ public class DoctorService
         }
         return result;
     }
+
+    #endregion
 
     public async Task<Result<List<DoctorRequestModel>>> GetDoctorByNameAsync(string name)
     {

@@ -6,3 +6,4 @@ global using HospitalBookingSystem.Domain.Model.Doctor;
 global using HospitalBookingSystem.Database.Models;
 global using HospitalBookingSystem.Domain.Features.Appointment;
 global using Microsoft.EntityFrameworkCore;
+global using HospitalBookingSystem.Domain.Model.Appointment;

@@ -1,6 +1,4 @@
-﻿using HospitalBookingSystem.Domain.Model.Appointment;
-
-namespace HospitalBookingSystem.RestApi.Controllers;
+﻿namespace HospitalBookingSystem.RestApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

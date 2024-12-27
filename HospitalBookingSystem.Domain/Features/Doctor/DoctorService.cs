@@ -145,6 +145,8 @@ public class DoctorService
 
     #endregion
 
+    #region UpdateDoctorAsync
+
     public async Task<Result<DoctorResponseModel>> UpdateDoctorAsync(string name, DoctorResponseModel responseModel)
     {
         Result<DoctorResponseModel> result;
@@ -187,5 +189,7 @@ public class DoctorService
         }
         return result;
     }
+
+    #endregion
 
 }

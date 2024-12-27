@@ -93,9 +93,11 @@ public class AppointmentService
         try
         {
             var patient = _context.TblPatients.FirstOrDefault(x => x.PatientId == appointment.PatientId);
-            var doctor = _context.TblDoctors.FirstOrDefault(x => x.DoctorId ==  appointment.DoctorId);  
+            var doctor = _context.TblDoctors.FirstOrDefault(x => x.DoctorId ==  appointment.DoctorId);
 
-            if(appointment is null)
+            #region Validation
+
+            if (appointment is null)
             {
                 result = Result<AppointmentModel>.ValidationError("Please Fill All Field");
             }
@@ -134,6 +136,8 @@ public class AppointmentService
             {
                 result = Result<AppointmentModel>.ValidationError("Doctor ID is not exist.");
             }
+
+            #endregion
 
             var appointmentId = Guid.NewGuid().ToString();
 

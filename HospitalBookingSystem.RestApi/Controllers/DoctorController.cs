@@ -22,7 +22,7 @@ public class DoctorController : ControllerBase
 
     #endregion
 
-
+    #region GetDoctorByNameAsync
 
     [HttpGet("{name}")]
     public async Task<IActionResult> GetDoctorByNameAsync(string name)
@@ -30,6 +30,8 @@ public class DoctorController : ControllerBase
         var item = await _service.GetDoctorByNameAsync(name);
         return Ok(item);
     }
+
+    #endregion
 
     [HttpPost]
     public async Task<IActionResult> CreateDoctorAsync([FromForm]DoctorModel doctorModel)

@@ -145,4 +145,6 @@ public class DoctorService
 
     #endregion
 
+    public async Task<Result<>>
+
 }

@@ -44,4 +44,11 @@ public class DoctorController : ControllerBase
 
     #endregion
 
+    [HttpPatch]
+    public async Task<IActionResult>UpdateDoctorAsync(string name, DoctorResponseModel responseModel)
+    {
+        var item = await _service.UpdateDoctorAsync(name, responseModel);
+        return Ok(item);
+    }
+
 }

@@ -44,4 +44,37 @@ public class AppointmentService
 
     #endregion
 
+    public async Task<Result<List<AppointmentRequestModel>>> GetAppointmentListByDateAsync(DateTime date)
+    {
+        Result<List<AppointmentRequestModel>> result;
+
+        try
+        {
+            var appointment = _context.TblAppointments
+                .Where(x=> x.AppointmentDate == date)
+                .AsNoTracking();
+
+            if (appointment is null)
+            {
+                result = Result<List<AppointmentRequestModel>>.ValidationError("No Data Found");
+            }
+
+            var lst = await appointment.Select(x => new AppointmentRequestModel()
+            {
+                PatientId = x.PatientId,
+                DoctorId = x.DoctorId,
+                AppointmentDate = x.AppointmentDate,
+                Reason = x.Reason,
+                Status = x.Status,
+            }).ToListAsync();
+
+            result = Result<List<AppointmentRequestModel>>.Success(lst);
+        }
+        catch (Exception ex)
+        {
+            result = Result<List<AppointmentRequestModel>>.SystemError(ex.Message);
+        }
+        return result;
+    }
+
 }

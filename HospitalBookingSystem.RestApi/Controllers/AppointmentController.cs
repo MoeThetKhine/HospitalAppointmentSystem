@@ -1,32 +1,31 @@
-﻿namespace HospitalBookingSystem.RestApi.Controllers
+﻿namespace HospitalBookingSystem.RestApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class AppointmentController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AppointmentController : ControllerBase
+    private readonly AppointmentService _appointmentService;
+
+    public AppointmentController(AppointmentService appointmentService)
     {
-        private readonly AppointmentService _appointmentService;
-
-        public AppointmentController(AppointmentService appointmentService)
-        {
-            _appointmentService = appointmentService;
-        }
-
-        #region GetAppointmentListAsync
-
-        [HttpGet]
-        public async Task<IActionResult> GetAppointmentListAsync()
-        {
-            try
-            {
-                var lst = await _appointmentService.GetAppointmentListAsync();
-                return Ok(lst);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        #endregion
+        _appointmentService = appointmentService;
     }
+
+    #region GetAppointmentListAsync
+
+    [HttpGet]
+    public async Task<IActionResult> GetAppointmentListAsync()
+    {
+        try
+        {
+            var lst = await _appointmentService.GetAppointmentListAsync();
+            return Ok(lst);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+    #endregion
 }

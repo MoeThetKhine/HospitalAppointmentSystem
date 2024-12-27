@@ -89,7 +89,9 @@ public class DoctorService
 
         try
         {
-            if(doctorModel is null)
+            #region Validation
+
+            if (doctorModel is null)
             {
                 result = Result<DoctorModel>.ValidationError("Please fill all field.");
             }
@@ -113,6 +115,8 @@ public class DoctorService
             {
                 result = Result<DoctorModel>.ValidationError("Please fill Address");
             }
+
+            #endregion
 
             var doctorId = Guid.NewGuid().ToString();
 

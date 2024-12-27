@@ -86,6 +86,8 @@ public class AppointmentService
 
     #endregion
 
+    #region CreateAppointmentAsync
+
     public async Task<Result<AppointmentModel>> CreateAppointmentAsync(AppointmentModel appointment)
     {
         Result<AppointmentModel> result;
@@ -163,6 +165,6 @@ public class AppointmentService
         return result;
     }
 
-
+    #endregion
 
 }

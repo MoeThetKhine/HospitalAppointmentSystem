@@ -2,3 +2,4 @@
 global using HospitalBookingSystem.Domain.Model.Patient;
 global using Microsoft.EntityFrameworkCore;
 global using HospitalBookingSystem.Domain.Model.Doctor;
+global using HospitalBookingSystem.Domain.Model.Appointment;

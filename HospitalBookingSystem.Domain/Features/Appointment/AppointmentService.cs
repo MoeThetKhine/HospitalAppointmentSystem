@@ -1,6 +1,4 @@
-﻿using HospitalBookingSystem.Domain.Model.Appointment;
-
-namespace HospitalBookingSystem.Domain.Features.Appointment
+﻿namespace HospitalBookingSystem.Domain.Features.Appointment
 {
     public class AppointmentService
     {

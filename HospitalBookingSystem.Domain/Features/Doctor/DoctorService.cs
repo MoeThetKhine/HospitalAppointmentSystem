@@ -81,4 +81,59 @@ public class DoctorService
 
     #endregion
 
+    public async Task<Result<DoctorModel>> CreateDoctorAsync(DoctorModel doctorModel)
+    {
+        Result<DoctorModel> result;
+
+        try
+        {
+            if(doctorModel is null)
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill all field.");
+            }
+            if (string.IsNullOrEmpty(doctorModel.Name))
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill Doctor Name");
+            }
+            if (string.IsNullOrEmpty(doctorModel.Specialization))
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill Specialization");
+            }
+            if(string.IsNullOrEmpty(doctorModel.PhoneNumber))
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill Phone Number");
+            }
+            if (string.IsNullOrEmpty(doctorModel.Email))
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill Email");
+            }
+            if(string.IsNullOrEmpty(doctorModel.Address))
+            {
+                result = Result<DoctorModel>.ValidationError("Please fill Address");
+            }
+
+            var doctorId = Guid.NewGuid().ToString();
+
+            var doctor = new TblDoctor
+            {
+                DoctorId = doctorId,
+                Name = doctorModel.Name,
+                Specialization = doctorModel.Specialization,
+                PhoneNumber = doctorModel.PhoneNumber,
+                Email = doctorModel.Email,
+                Address = doctorModel.Address,
+            };
+
+            _appDbContext.TblDoctors.Add(doctor);
+            await _appDbContext.SaveChangesAsync();
+
+            result = Result<DoctorModel>.Success(doctorModel);
+
+        }
+        catch(Exception ex)
+        {
+            result = Result<DoctorModel>.SystemError(ex.Message);
+        }
+        return result;
+    }
 }

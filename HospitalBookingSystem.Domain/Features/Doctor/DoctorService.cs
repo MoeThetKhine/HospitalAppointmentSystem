@@ -145,6 +145,4 @@ public class DoctorService
 
     #endregion
 
-
-
 }

@@ -191,6 +191,8 @@ public class DoctorService
 
     #endregion
 
+    #region DisadvaliableDoctorAsync
+
     public async Task<Result<DoctorModel>> DisadvaliableDoctorAsync(string name)
     {
         Result<DoctorModel> result;
@@ -222,5 +224,6 @@ public class DoctorService
         return result;
     }
 
+    #endregion
 
 }

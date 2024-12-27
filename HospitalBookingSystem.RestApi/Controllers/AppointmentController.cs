@@ -28,4 +28,18 @@ public class AppointmentController : ControllerBase
     }
 
     #endregion
+
+    [HttpGet("{date}")]
+    public async Task<IActionResult> GetAppointmentListByDateAsync(DateTime date)
+    {
+        try
+        {
+            var lst = await _appointmentService.GetAppointmentListByDateAsync(date);
+            return Ok(lst);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
 }

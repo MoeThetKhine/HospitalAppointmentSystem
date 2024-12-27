@@ -191,4 +191,36 @@ public class DoctorService
 
     #endregion
 
+    public async Task<Result<DoctorModel>> DisadvaliableDoctorAsync(string name)
+    {
+        Result<DoctorModel> result;
+
+        try
+        {
+            var doctor = await _appDbContext.TblDoctors
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Name == name);
+
+            if (doctor == null)
+            {
+                return Result<DoctorModel>.ValidationError("Doctor does not exist.");
+            }
+
+            doctor.IsAvailable = false;
+
+            _appDbContext.TblDoctors.Attach(doctor);
+            _appDbContext.Entry(doctor).State = EntityState.Modified;
+            await _appDbContext.SaveChangesAsync();
+
+            result = Result<DoctorModel>.DeleteSuccess();
+        }
+        catch (Exception ex)
+        {
+            result = Result<DoctorModel>.SystemError(ex.Message);
+        }
+
+        return result;
+    }
+
+
 }

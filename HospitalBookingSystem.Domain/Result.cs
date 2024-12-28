@@ -27,6 +27,16 @@ public class Result<T>
 
     #endregion
 
+    public static Result<T> Success(string message = "Success")
+    {
+        return new Result<T>()
+        {
+            IsSuccess = true,
+            Type = EnumRespType.Success,
+            Message = message
+        };
+    }
+
     #region DeleteSuccess
 
     public static Result<T> DeleteSuccess(string message = "Deleting Successful.")

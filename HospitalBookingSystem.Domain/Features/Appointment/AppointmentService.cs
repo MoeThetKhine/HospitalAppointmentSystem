@@ -166,6 +166,8 @@ public class AppointmentService
 
     #endregion
 
+    #region UpdateStatusAsync
+
     public async Task<Result<AppointmentModel>> UpdateStatusAsync(string id)
     {
         Result<AppointmentModel> result;
@@ -198,5 +200,7 @@ public class AppointmentService
         }
         return result;
     }
+
+    #endregion
 
 }

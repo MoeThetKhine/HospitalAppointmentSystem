@@ -27,6 +27,8 @@ public class Result<T>
 
     #endregion
 
+    #region Success
+
     public static Result<T> Success(string message = "Success")
     {
         return new Result<T>()
@@ -36,6 +38,8 @@ public class Result<T>
             Message = message
         };
     }
+
+    #endregion
 
     #region DeleteSuccess
 

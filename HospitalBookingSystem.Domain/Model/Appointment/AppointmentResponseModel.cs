@@ -1,7 +1,6 @@
-﻿namespace HospitalBookingSystem.Domain.Model.Appointment
+﻿namespace HospitalBookingSystem.Domain.Model.Appointment;
+
+public class AppointmentResponseModel
 {
-    public class AppointmentResponseModel
-    {
-        public string Status { get; set; } = null!;
-    }
+    public string Status { get; set; } = null!;
 }

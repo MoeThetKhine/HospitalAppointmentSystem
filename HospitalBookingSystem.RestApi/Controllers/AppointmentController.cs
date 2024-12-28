@@ -57,4 +57,11 @@ public class AppointmentController : ControllerBase
     }
 
     #endregion
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateStatusAsync(string id)
+    {
+        var item = await _appointmentService.UpdateStatusAsync(id);
+        return Ok(item);
+    }
 }

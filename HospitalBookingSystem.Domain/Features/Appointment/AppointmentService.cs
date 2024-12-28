@@ -1,4 +1,6 @@
-﻿namespace HospitalBookingSystem.Domain.Features.Appointment;
+﻿using HospitalBookingSystem.Database.Models;
+
+namespace HospitalBookingSystem.Domain.Features.Appointment;
 
 public class AppointmentService
 {
@@ -163,5 +165,38 @@ public class AppointmentService
     }
 
     #endregion
+
+    public async Task<Result<AppointmentModel>> UpdateStatusAsync(string id)
+    {
+        Result<AppointmentModel> result;
+        try
+        {
+            var appointment = await _context.TblAppointments
+           .FirstOrDefaultAsync(x => x.Status == "Scheduled" && x.AppointmentId == id);
+
+            if (appointment == null)
+            {
+                return Result<AppointmentModel>.ValidationError("Appointment does not exist.");
+            }
+
+            appointment.Status = "Completed";
+
+            if (_context.Entry(appointment).State == EntityState.Detached)
+            {
+                _context.TblAppointments.Attach(appointment);
+            }
+
+            _context.Entry(appointment).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            result = Result<AppointmentModel>.Success();
+        }
+        catch (Exception ex)
+        {
+            result = Result<AppointmentModel>.SystemError(ex.Message);
+        }
+        return result;
+    }
 
 }
